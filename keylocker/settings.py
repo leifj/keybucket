@@ -157,3 +157,5 @@ LOGGING = {
         },
     }
 }
+
+AUTH_PROFILE_MODELS = "keylocker.profile.UserProfile"

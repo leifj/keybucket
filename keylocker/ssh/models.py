@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db import fields
+from assurance.models import Assurance
 
 class SSHKey(models.Model):
-    name = fields.CharField(max_length=128)
-    key = fields.TextField()
-    user = models.ForeignKey(User)
-    description = fields.TextField(null=True,blank=True)
+    user = models.ForeignKey(User,editable=False)
+    assurance = models.ForeignKey(Assurance)
+    name = models.CharField(max_length=128)
+    key = models.TextField()
+    description = models.TextField(null=True,blank=True)

@@ -12,6 +12,10 @@ def _session_assurance_levels(request):
 def add_key(request):
     if request.method == 'POST':
         form = SSHKeyForm(request.POST)
+        levels = _session_assurance_levels(request)
+        levels.extend(Assurance.objects.filter(assignable=True))
+        form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
+        
         if form.is_valid():
             form.save()
             return HttpResponseRedirect("/ssh")

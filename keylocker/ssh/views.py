@@ -1,4 +1,3 @@
-# Create your views here.
 from ssh.models import SSHKey
 from django.http import HttpResponse
 
@@ -8,4 +7,3 @@ def get_in_authorized_key_fmt(request,utag,labels=None):
     for key in keys:
         o.append("%s %s" % (key.key,key.name))
     return HttpResponse("\n".join(o))
-    

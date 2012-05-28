@@ -6,4 +6,3 @@ class Assurance(models.Model):
     assignable = models.BooleanField(default=False)
     uri = models.CharField(max_length=64,unique=True)
     name = models.CharField(max_length=64,unique=True)
-    

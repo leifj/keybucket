@@ -13,11 +13,20 @@ def populate_profile(sender, user, request, **kwargs):
     Check if profile exists when user logs in, otherwise create it.
     Also populates idp from the request.
     """
+    modified = False
     profile = UserProfile.objects.get_or_create(user=user)
     if not profile.uhash:
         profile.uhash = hashlib.sha1(user.username).hexdigest()
-        profile.save()
+        modified = True
+    
     #ToDo get idp from request and set
+    idp = request.META.get('Shib_Identity_Provider',None)
+    if idp != None:
+        profile.idp = idp
+        modified = True
+        
+    if modified:
+        profile.save()
     return
 
 user_logged_in.connect(populate_profile)

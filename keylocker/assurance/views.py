@@ -5,14 +5,12 @@ from ssh.models import SSHKey
 from assurance.models import Assurance
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-
-def _session_assurance_levels(request):
-    return []
+from profile.models import assurance_levels
 
 def add_key(request):
     if request.method == 'POST':
         form = SSHKeyForm(request.POST)
-        levels = _session_assurance_levels(request)
+        levels = assurance_levels(request)
         levels.extend(Assurance.objects.filter(assignable=True))
         form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
         
@@ -22,7 +20,7 @@ def add_key(request):
     
     sk = SSHKey(user=request.user)
     form = SSHKeyForm(instance=sk)
-    levels = _session_assurance_levels(request)
+    levels = assurance_levels(request)
     levels.extend(Assurance.objects.filter(assignable=True))
     form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
     

@@ -1,6 +1,13 @@
 from ssh.models import SSHKey
 from django.http import HttpResponse
 from django.db.models import Q
+from ssh.forms import SSHKeyForm
+from django.http import HttpResponseRedirect
+from ssh.models import SSHKey
+from assurance.models import Assurance
+from django.shortcuts import render_to_response
+from django.template.context import RequestContext
+from profile.models import assurance_levels
 
 """
 Examples:
@@ -11,7 +18,7 @@ Examples:
 
 """
 
-def get_in_authorized_key_fmt(request,utag,labels=None):
+def get_in_authorized_keys_fmt(request,utag,labels=None):
     keys = None
     if '@' in utag:
         (uhash,level) = utag.split('@')
@@ -22,3 +29,22 @@ def get_in_authorized_key_fmt(request,utag,labels=None):
     for key in keys:
         o.append("%s %s+%s" % (key.key,key.name,key.assurance))
     return HttpResponse("\n".join(o))
+
+def add_key(request):
+    if request.method == 'POST':
+        form = SSHKeyForm(request.POST)
+        levels = assurance_levels(request)
+        levels.extend(Assurance.objects.filter(assignable=True))
+        form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/ssh")
+
+    sk = SSHKey(user=request.user)
+    form = SSHKeyForm(instance=sk)
+    levels = assurance_levels(request)
+    levels.extend(Assurance.objects.filter(assignable=True))
+    form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
+
+    return render_to_response('ssh/add.html',{'form':form,'user':request.user},RequestContext(request))

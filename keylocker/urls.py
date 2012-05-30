@@ -14,5 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^ssh/',include(keylocker.ssh.urls))
+    url(r'^ssh/',include('keylocker.ssh.urls')),
+    url(r'^saml2/sp/',include('djangosaml2.urls')),
 )

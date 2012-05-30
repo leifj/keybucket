@@ -125,8 +125,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'djangosaml2',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'keylocker.ssh',
+    'keylocker.assurance',
+    'keylocker.profile',
 )
 
 # A sample logging configuration. The only tangible logging

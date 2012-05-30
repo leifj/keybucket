@@ -30,6 +30,7 @@ def get_in_authorized_keys_fmt(request,utag,labels=None):
         o.append("%s %s+%s" % (key.key,key.name,key.assurance))
     return HttpResponse("\n".join(o))
 
+@login_required
 def add_key(request):
     if request.method == 'POST':
         form = SSHKeyForm(request.POST)
@@ -48,3 +49,8 @@ def add_key(request):
     form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
 
     return render_to_response('ssh/add.html',{'form':form,'user':request.user},RequestContext(request))
+
+@login_required
+def list_keys(request):
+    qs = SSHKey.objects.filter(user=request.user)
+    return render_to_response('ssh/list.html',{'keys': qs})

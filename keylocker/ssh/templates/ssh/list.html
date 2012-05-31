@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block header %}
+
+{% endblock %}
+{% block content %}
+    <div id="key-container">
+        {% for key in keys %}
+
+        <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a style="text-align: left;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion-{{ key.id }}">
+                        {{ key.name }}
+                    </a>
+                </div>
+                <div id="accordion-{{ key.id }}" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                                    <div style="text-align:left">
+                                        {{ key.key }}
+                                        <br><br>
+                                        Assurance: {{ key.assurance }}
+                                    </div>
+
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+
+        </div>
+{% endblock %}

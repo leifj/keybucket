@@ -1,4 +1,5 @@
 from ssh.models import SSHKey
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.db.models import Q
 from ssh.forms import SSHKeyForm
@@ -53,4 +54,4 @@ def add_key(request):
 @login_required
 def list_keys(request):
     qs = SSHKey.objects.filter(user=request.user)
-    return render_to_response('ssh/list.html',{'keys': qs})
+    return render_to_response('ssh/list.html',{'keys': qs}, RequestContext(request))

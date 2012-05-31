@@ -6,9 +6,10 @@ from ssh.forms import SSHKeyForm
 from django.http import HttpResponseRedirect
 from ssh.models import SSHKey
 from assurance.models import Assurance
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from profile.models import assurance_levels
+from actstream.signals import action
 
 """
 Examples:
@@ -40,7 +41,8 @@ def add_key(request):
         form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
 
         if form.is_valid():
-            form.save()
+            sk = form.save()
+            action.send(request.user,action_object=sk,verb='added')
             return HttpResponseRedirect("/ssh")
 
     sk = SSHKey(user=request.user)
@@ -49,6 +51,13 @@ def add_key(request):
     levels.extend(Assurance.objects.filter(assignable=True))
     form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
     return render_to_response('ssh/add.html',{'form':form,'user':request.user},RequestContext(request))
+
+def remove_key(request,kid):
+    sk = get_object_or_404(SSHKey,pk=kid)
+    if sk:
+        action.send(request.user,action_object=sk,verb='removed')
+        sk.delete()
+    return HttpResponseRedirect("/ssh")
 
 @login_required
 def list_keys(request):

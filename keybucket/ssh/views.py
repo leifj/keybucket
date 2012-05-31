@@ -1,14 +1,13 @@
-from ssh.models import SSHKey
+from keybucket.ssh.models import SSHKey
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.db.models import Q
-from ssh.forms import SSHKeyForm
+from keybucket.ssh.forms import SSHKeyForm
 from django.http import HttpResponseRedirect
-from ssh.models import SSHKey
-from assurance.models import Assurance
+from keybucket.assurance.models import Assurance
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
-from profile.models import assurance_levels
+from keybucket.profile.models import assurance_levels
 from actstream.signals import action
 
 """

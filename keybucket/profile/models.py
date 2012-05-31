@@ -2,7 +2,7 @@ import hashlib
 from django.contrib.auth.signals import user_logged_in
 from django.db import models
 from django.contrib.auth.models import User
-from assurance.models import Assurance, IdentityProvider
+from keybucket.assurance.models import Assurance, IdentityProvider
 from django.core.exceptions import ObjectDoesNotExist
 
 class UserProfile(models.Model):

@@ -10,6 +10,8 @@ class UserProfile(models.Model):
     display_name = models.CharField(max_length=256)
     idp = models.CharField(max_length=256)
     uhash = models.CharField(max_length=256,unique=True) # sha1 of user.username
+    timecreated = models.DateTimeField(auto_now_add=True)
+    lastupdated = models.DateTimeField(auto_now=True)
 
 def populate_profile(sender, user, request, **kwargs):
     """

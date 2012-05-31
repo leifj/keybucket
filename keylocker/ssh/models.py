@@ -8,6 +8,10 @@ class SSHKey(models.Model):
     name = models.SlugField(max_length=128,unique=False)
     key = models.TextField()
     description = models.TextField(null=True,blank=True)
+    verified = models.BooleanField(default=False)
+    timecreated = models.DateTimeField(auto_now_add=True)
+    lastupdated = models.DateTimeField(auto_now=True)
+    lastverified = models.DateTimeField(null=True,blank=True)
     
     def __unicode__(self):
         return "%s %s+%s" % (self.key,self.name,self.assurance)

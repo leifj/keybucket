@@ -48,7 +48,6 @@ def add_key(request):
     levels = assurance_levels(request)
     levels.extend(Assurance.objects.filter(assignable=True))
     form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
-
     return render_to_response('ssh/add.html',{'form':form,'user':request.user},RequestContext(request))
 
 @login_required

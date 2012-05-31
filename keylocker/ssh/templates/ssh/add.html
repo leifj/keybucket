@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block header %}
+<h1 class="text-logo" id="title" style="color:#333;">Add key</h1>
+{% endblock %}
+
+{% block content %}
+    <div id="key-container" class="shadow" style="text-align: left">
+        <form class="form">
+            <h6 class="form-title">Paste your key</h6>
+            {{ form.key }}
+            <h6 class="form-title">Name this key</h6>
+            {{ form.name }}
+            <h6 class="form-title">Describe what this key is for, so you remember next time</h6>
+            {{ form.description }}
+            <hr>
+            <h6 class="form-title">Level of trust</h6>
+
+
+        </form>
+    </div>
+    <br><br>
+{% endblock %}

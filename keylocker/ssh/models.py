@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from assurance.models import Assurance
 
 class SSHKey(models.Model):
-    user = models.ForeignKey(User,editable=True)
+    user = models.ForeignKey(User,editable=False)
     name = models.CharField(max_length=128,unique=False)
     description = models.TextField(null=True,blank=True)
     slug = models.SlugField(max_length=128,unique=False)

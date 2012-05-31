@@ -53,7 +53,6 @@ def populate_profile(sender, user, request, **kwargs):
             pass
     
     request.session['assurance_levels'] = levels
-        
     return
 
 user_logged_in.connect(populate_profile)

@@ -6,6 +6,7 @@ class Assurance(models.Model):
     assignable = models.BooleanField(default=False)
     uri = models.CharField(max_length=64,unique=True)
     name = models.CharField(max_length=64,unique=True)
+    quality = models.IntegerField(default=0)
     timecreated = models.DateTimeField(auto_now_add=True)
     lastupdated = models.DateTimeField(auto_now=True)
     

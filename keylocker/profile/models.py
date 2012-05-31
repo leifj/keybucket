@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User,related_name="profile")
+    display_name = models.CharField(max_length=256)
     idp = models.CharField(max_length=256)
     uhash = models.CharField(max_length=256,unique=True) # sha1 of user.username
 

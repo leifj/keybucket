@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'djangosaml2',
     'taggit',
+    'actstream',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'keylocker.ssh',

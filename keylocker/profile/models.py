@@ -6,7 +6,7 @@ from assurance.models import Assurance, IdentityProvider
 from django.core.exceptions import ObjectDoesNotExist
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User,related="profile")
+    user = models.ForeignKey(User,related_name="profile")
     idp = models.CharField(max_length=256)
     uhash = models.CharField(max_length=256,unique=True) # sha1 of user.username
 

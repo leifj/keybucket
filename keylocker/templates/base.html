@@ -4,21 +4,27 @@
         <meta charset="utf-8">
         <title>keybucket</title>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-        <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="{{ MEDIA_URL }}bootstrap/js/bootstrap.min.js"></script>
+        <link href="{{ MEDIA_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ MEDIA_URL }}css/style.css" rel="stylesheet">
         {%  block extrahead %}{% endblock %}
     </head>
     <body>
         <div class="container-fluid">
-            <div class="row-fluid">
-                {% block header %}{% endblock %}
+            <div style="text-align: center;margin-top:100px;">
+                <div class="row-fluid">
+                    <img src="{{ MEDIA_URL }}img/bucket.svg">
+                    <br><br>
+                    <h1 class="text-logo" id="title" style="color:#666;"><span style="color:#111;">Your keys:</span>published</h1>
+                    {% block header %}{% endblock %}
+                </div>
             </div>
         </div>
         <div class="container-fluid">
-            <div class="row-fluid">
-                {% block content %}{% endblock %}
+            <div style="text-align: center;margin-top:30px;">
+                <div class="row-fluid">
+                    {% block content %}{% endblock %}
+                </div>
             </div>
         </div>
     </body>

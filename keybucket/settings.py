@@ -1,4 +1,4 @@
-# Django settings for keylocker project.
+# Django settings for keybucket project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -105,10 +105,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'keylocker.urls'
+ROOT_URLCONF = 'keybucket.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'keylocker.wsgi.application'
+WSGI_APPLICATION = 'keybucket.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -131,9 +131,9 @@ INSTALLED_APPS = (
     'actstream',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'keylocker.ssh',
-    'keylocker.assurance',
-    'keylocker.profile',
+    'keybucket.ssh',
+    'keybucket.assurance',
+    'keybucket.profile',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -165,4 +165,4 @@ LOGGING = {
     }
 }
 
-AUTH_PROFILE_MODELS = "keylocker.profile.UserProfile"
+AUTH_PROFILE_MODELS = "profile.UserProfile"

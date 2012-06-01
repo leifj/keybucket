@@ -7,7 +7,7 @@ def asgard_sp_config(request=None):
     host = "localhost"
     if request != None:
         host = request.get_host().replace(":","-")
-    return {
+    x= {
         # your entity id, usually your subdomain plus the url to the metadata view
         'entityid': 'https://keybucket.app.nordu.net/saml2/sp/metadata',
         # directory with attribute mapping
@@ -68,3 +68,6 @@ def asgard_sp_config(request=None):
             },
         'valid_for': 24,  # how long is our metadata valid
     }
+    c = SPConfig()
+    c.load(x)
+    return c

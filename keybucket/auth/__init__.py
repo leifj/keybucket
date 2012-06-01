@@ -44,7 +44,7 @@ def asgard_sp_config(request=None):
         # where the remote metadata is stored
         #'metadata': { 'remote': [{'url':'http://md.swamid.se/md/swamid-idp.xml',
         #                          'cert':'%s/saml2/credentials/md-signer.crt' % settings.BASE_DIR}] },
-        'metadata': {'local': ['/var/run/swamid-idp.xml']},
+        'metadata': {'local': ['/var/run/swamid-2.0.xml']},
 
         # set to 1 to output debugging information
         'debug': 1,

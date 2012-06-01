@@ -1,5 +1,7 @@
 __author__ = 'leifj'
 
+from django.conf import settings
+
 def asgard_sp_config(request=None):
     host = "localhost"
     if request != None:

@@ -48,6 +48,7 @@ def asgard_sp_config(request=None):
 
         # set to 1 to output debugging information
         'debug': 1,
+        'log': '/tmp/saml.log',
 
         # certificate
         "key_file" : "%s/%s.key" % (settings.SSL_KEY_DIR,host),

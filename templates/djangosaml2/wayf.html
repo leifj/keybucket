@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Authentication Required</h1>
-    <p>In order to proceed you need to identify yourself to the group service...</p>
+    <h1>Please Login!</h1>
     <p>Please select your <strong>Identity Provider</strong> from the following list:</p>
     <form action="{% url djangosaml2.views.login %}" method="GET">
     	<select id="idp" name="idp">

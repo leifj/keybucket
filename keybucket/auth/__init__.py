@@ -5,6 +5,9 @@ from saml2.config import SPConfig
 import copy
 from saml2 import BINDING_HTTP_POST, BINDING_HTTP_REDIRECT
 
+import logging
+logging.basicConfig()
+
 def asgard_sp_config(request=None):
     host = "localhost"
     if request != None:

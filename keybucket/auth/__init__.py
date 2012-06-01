@@ -1,6 +1,7 @@
 __author__ = 'leifj'
 
 from django.conf import settings
+from saml2.config import SPConfig
 from saml2 import BINDING_HTTP_POST, BINDING_HTTP_REDIRECT
 
 def asgard_sp_config(request=None):

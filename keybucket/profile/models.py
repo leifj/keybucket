@@ -58,4 +58,9 @@ def populate_profile(sender, user, request, **kwargs):
 user_logged_in.connect(populate_profile)
 
 def assurance_levels(request):
+    try:
+        request.session['assurance_levels']
+    except KeyError:
+        request.session['assurance_levels'] = []
+
     return request.session['assurance_levels']

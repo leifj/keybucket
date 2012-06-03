@@ -20,15 +20,22 @@
                         <div style="text-align:left">
                             <pre>{{ key.key }}</pre>
                             <br>
-                            <strong>Assurance:</strong> {{ key.assurance }}
+                            <strong>Assurance:</strong>
+                            {{ key.assurance }}
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
-        </div>
-        {% endif %}
-        <a href="/ssh/add" class="btn btn-large btn-success">Add key</a>
-
     </div>
+    <a href="/ssh/add" class="btn btn-large btn-success">Add key</a>
+    {% else %}
+        <h6>You don't have any keys in your bucket</h6>
+        <br>
+        <a href="/ssh/add" class="btn btn-large btn-success">Add key</a>
+        <div id="key-container"></div>
+    {% endif %}
+
+
+</div>
 {% endblock %}

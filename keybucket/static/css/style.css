@@ -9,6 +9,7 @@
     margin-left: auto ;
     margin-right: auto ;
     padding:20px;
+    min-height: 200px;
 }
 
 .text-logo {

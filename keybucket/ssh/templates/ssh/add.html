@@ -5,7 +5,7 @@
 
 {% block content %}
     <div id="key-container" class="shadow" style="text-align: left">
-        <form class="form">
+        <form class="form" action="/ssh/add" method="post">  {% csrf_token %}
             <h6 class="form-title">Paste your key</h6>
             {{ form.key }}
             <h6 class="form-title">Name this key</h6>
@@ -14,8 +14,14 @@
             {{ form.description }}
             <hr>
             <h6 class="form-title">Level of trust</h6>
-
-
+            {% for a in levels %}
+                <label class="checkbox">
+                    <input type="checkbox" name="assurance" value="{{ a }}"> {{ a }}
+                </label>
+            {% endfor %}
+            <hr>
+            <input type="submit" class="btn btn-large btn-success" value="Save key"/>
+            <input type="reset" class="btn btn-large btn-important" value="Clear form"/>
         </form>
     </div>
     <br><br>

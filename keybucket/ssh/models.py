@@ -7,7 +7,7 @@ class SSHKey(models.Model):
     name = models.CharField(max_length=128,unique=False)
     description = models.TextField(null=True,blank=True)
     slug = models.SlugField(max_length=128,unique=False)
-    assurance = models.ForeignKey(Assurance)
+    assurance = models.ManyToManyField(Assurance)
     key = models.TextField()
     verified = models.BooleanField(default=False)
     timecreated = models.DateTimeField(auto_now_add=True)

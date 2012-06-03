@@ -37,10 +37,14 @@ def add_key(request):
         form = SSHKeyForm(request.POST)
         levels = assurance_levels(request)
         levels.extend(Assurance.objects.filter(assignable=True))
-        form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
+        #form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
 
         if form.is_valid():
-            sk = form.save()
+            sk = form.save(commit=False)
+            sk.user = request.user
+            for a in request.POST.getlist('assurance'):
+                print type(a)
+            sk.save()
             action.send(request.user,action_object=sk,verb='added')
             return HttpResponseRedirect("/ssh")
 
@@ -48,8 +52,8 @@ def add_key(request):
     form = SSHKeyForm(instance=sk)
     levels = assurance_levels(request)
     levels.extend(Assurance.objects.filter(assignable=True))
-    form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
-    return render_to_response('ssh/add.html',{'form':form,'user':request.user},RequestContext(request))
+    #form.fields['assurance'].choices=[(al.id,al.name) for al in levels]
+    return render_to_response('ssh/add.html',{'form':form,'user':request.user, 'levels':levels},RequestContext(request))
 
 def remove_key(request,kid):
     sk = get_object_or_404(SSHKey,pk=kid)

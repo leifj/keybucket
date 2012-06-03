@@ -13,12 +13,8 @@
             <h6 class="form-title">Describe what this key is for, so you remember next time</h6>
             {{ form.description }}
             <hr>
-            <h6 class="form-title">Level of trust</h6>
-            {% for a in levels %}
-                <label class="checkbox">
-                    <input type="checkbox" name="assurance" value="{{ a }}"> {{ a }}
-                </label>
-            {% endfor %}
+            <h6 class="form-title">Assurance level</h6>
+            {{ form.assurance }}
             <hr>
             <input type="submit" class="btn btn-large btn-success" value="Save key"/>
             <input type="reset" class="btn btn-large btn-important" value="Clear form"/>

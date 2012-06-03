@@ -11,15 +11,15 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div style="text-align: center;margin-top:30px;" id="key-container">
+            <div style="text-align: center;margin-top:0px;" id="key-container">
                 <div class="row-fluid">
-                    <img class="pull-left" src="{{ MEDIA_URL }}img/bucket.svg">
+                    <img src="{{ MEDIA_URL }}img/bucket.svg">
                     {% block header %}{% endblock %}
                 </div>
             </div>
         </div>
         <div class="container-fluid">
-            <div style="text-align: center;margin-top:30px;">
+            <div style="text-align: center;margin-top:0px;">
                 <div class="row-fluid">
                     {% block content %}{% endblock %}
                 </div>
@@ -29,7 +29,6 @@
             <div style="margin-top:30px;">
                 <div class="row-fluid">
                     <hr>
-                    foo
                     {% block footer %}{% endblock %}
                 </div>
             </div>

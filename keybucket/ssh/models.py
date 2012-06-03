@@ -3,11 +3,11 @@ from django.contrib.auth.models import User
 from keybucket.assurance.models import Assurance
 
 class SSHKey(models.Model):
-    user = models.ForeignKey(User,editable=False)
+    user = models.ForeignKey(User, editable=False)
     name = models.CharField(max_length=128,unique=False)
     description = models.TextField(null=True,blank=True)
-    slug = models.SlugField(max_length=128,unique=False)
-    assurance = models.ManyToManyField(Assurance)
+    slug = models.SlugField(max_length=128,unique=False,null=True,blank=True)
+    assurance = models.ManyToManyField(Assurance,null=True,blank=True)
     key = models.TextField()
     verified = models.BooleanField(default=False)
     timecreated = models.DateTimeField(auto_now_add=True)

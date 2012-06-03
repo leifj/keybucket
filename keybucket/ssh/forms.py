@@ -12,6 +12,6 @@ from django.forms.widgets import CheckboxSelectMultiple
 class SSHKeyForm(ModelForm):
     class Meta:
         model = SSHKey
-        fields = ('name', 'description', 'key')
+        #fields = ('name', 'assurance', 'description', 'key')
         #widgets = {'assurance': CheckboxSelectMultiple(attrs={'class' : 'myfieldclass'})}
 

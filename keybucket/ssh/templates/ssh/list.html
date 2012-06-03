@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block header %}
-<h1 class="text-logo" id="title" style="color:#666;"><span style="color:#333;">Your keys:</span>published</h1>
+    <h1 class="text-logo" id="title" style="color:#666;"><span style="color:#333;">Your keys:</span>published</h1>
 {% endblock %}
 
 {% block content %}
@@ -30,10 +30,13 @@
     </div>
     <a href="/ssh/add" class="btn btn-large btn-success">Add key</a>
     {% else %}
-        <h6>You don't have any keys in your bucket</h6>
-        <br>
-        <a href="/ssh/add" class="btn btn-large btn-success">Add key</a>
-        <div id="key-container"></div>
+        <div id="key-container" class="shadow">
+            <div class="hero-unit">
+                <p>Welcome, please fill your bucket with some keys</p>
+            </div>
+            <br>
+            <a href="/ssh/add" class="btn btn-large btn-success">Add key</a>
+        </div>
     {% endif %}
 
 

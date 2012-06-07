@@ -124,7 +124,7 @@ def login(request,
         context = {
             'available_idps': idps,
             'last_selected_idp': last_selected_idp,
-            'last_selected_idp_name': last_selected_idp_name,
+            'last_selected_idp_name': last_selected_idp_name[0],
             'came_from': came_from,
             'form': form,
             redirect_field_name: redirect_to,

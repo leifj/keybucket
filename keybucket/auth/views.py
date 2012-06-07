@@ -88,7 +88,7 @@ def login(request,
     if last_selected_idp:
         last_selected_idp_name = last_selected_idp
         print conf.metadata.entity[last_selected_idp]
-        org = conf.metadata.entity[last_selected_idp].organization
+        org = conf.metadata.entity[last_selected_idp]['organization']
         if org:
             last_selected_idp_name = org.organization_display_name
             if not last_selected_idp_name:

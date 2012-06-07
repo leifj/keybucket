@@ -88,6 +88,7 @@ def login(request,
     last_selected_idp_name = last_selected_idp
     if last_selected_idp:
         last_selected_idp_name = idp_set.get(last_selected_idp,last_selected_idp)
+        print last_selected_idp_name
 
     if selected_idp:
         print conf.metadata.entity[selected_idp]

@@ -85,6 +85,7 @@ def login(request,
     last_selected_idp = request.COOKIES.get(IDP_COOKIE,None)
 
     idp_set = conf.idps()
+    last_selected_idp_name = last_selected_idp
     if last_selected_idp:
         last_selected_idp_name = idp_set.get(last_selected_idp,last_selected_idp)
 

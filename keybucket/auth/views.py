@@ -90,9 +90,11 @@ def login(request,
         print conf.metadata.entity[last_selected_idp]
         org = conf.metadata.entity[last_selected_idp]['organization']
         if org:
-            last_selected_idp_name = org.organization_display_name
+            last_selected_idp_name = org.get('organization_display_name',None)
             if not last_selected_idp_name:
-                last_selected_idp_name = org.organization_name
+                last_selected_idp_name = org.get('organization_name',None)
+            if not last_selected_idp_name:
+                last_selected_idp_name = last_selected_idp
 
     if selected_idp:
         print conf.metadata.entity[selected_idp]

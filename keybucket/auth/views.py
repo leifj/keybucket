@@ -130,6 +130,8 @@ def login(request,
         }
         if extra_context is not None:
             context.update(extra_context)
-        return TemplateResponse(request, template_name, context, current_app=current_app)
+        response = TemplateResponse(request, template_name, context, current_app=current_app)
+        response.set_cookie(IDP_COOKIE,selected_idp)
+        return response
 
 

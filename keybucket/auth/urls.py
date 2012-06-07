@@ -3,5 +3,5 @@ from django.conf import settings
 
 
 urlpatterns = patterns('keybucket.auth.views',
-    url(r'^login/','login_dual')
+    url(r'^login/','login')
 )

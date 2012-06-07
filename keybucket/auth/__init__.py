@@ -7,7 +7,8 @@ from saml2 import BINDING_HTTP_POST, BINDING_HTTP_REDIRECT
 
 import logging
 logging.basicConfig()
-logging.setLevel(logging.DEBUG)
+logger = loggin.getLogger("djangosaml2")
+logger.setLevel(logging.DEBUG)
 
 def asgard_sp_config(request=None):
     host = "localhost"

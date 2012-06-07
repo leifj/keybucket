@@ -105,8 +105,10 @@ def login(request,
         return HttpResponseRedirect(location)
     else:
         form = authentication_form(request)
+        idp_set = conf.idps()
         idps = []
-        idps.extend(conf.idps())
+        if idp_set:
+            idps.extend(idps.items())
         current_site = get_current_site(request)
         context = {
             'available_idps': idps.items(),

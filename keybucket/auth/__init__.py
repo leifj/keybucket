@@ -72,8 +72,7 @@ def asgard_sp_config(request=None):
             'name': [('NORDUNet', 'en')],
             'display_name': [('NORDUnet A/S', 'en')],
             'url': [('http://www.nordu.net', 'en')],
-            },
-        'valid_for': 24,  # how long is our metadata valid
+            }
     }
     c = SPConfig()
     c.load(copy.deepcopy(x))

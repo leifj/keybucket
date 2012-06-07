@@ -85,7 +85,7 @@ def login(request,
     last_selected_idp = request.COOKIES.get(IDP_COOKIE,None)
 
     if last_selected_idp:
-        print print conf.metadata.entity[last_selected_idp]
+        print conf.metadata.entity[last_selected_idp]
 
     if selected_idp:
         print conf.metadata.entity[selected_idp]

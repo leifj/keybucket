@@ -84,8 +84,15 @@ def login(request,
     came_from = request.GET.get('next', settings.LOGIN_REDIRECT_URL)
     last_selected_idp = request.COOKIES.get(IDP_COOKIE,None)
 
+
     if last_selected_idp:
+        last_selected_idp_name = last_selected_idp
         print conf.metadata.entity[last_selected_idp]
+        org = conf.metadata.entity[last_selected_idp].organization
+        if org:
+            last_selected_idp_name = org.organization_display_name
+            if not last_selected_idp_name:
+                last_selected_idp_name = org.organization_name
 
     if selected_idp:
         print conf.metadata.entity[selected_idp]
@@ -122,6 +129,7 @@ def login(request,
         context = {
             'available_idps': idps,
             'last_selected_idp': last_selected_idp,
+            'last_selected_idp_name': last_selected_idp_name,
             'came_from': came_from,
             'form': form,
             redirect_field_name: redirect_to,

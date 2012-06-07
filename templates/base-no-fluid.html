@@ -10,25 +10,26 @@
         {%  block extrahead %}{% endblock %}
     </head>
     <body>
-        <br><br>
-        <div class="container-fluid">
-            <div style="text-align: center;margin-top:0px;" id="key-container">
-                <div class="row-fluid">
+        <br><br><br>
+        <div class="container">
+            <div class="span12">
+                <div class="row">
                     <a href="/ssh"><img style="margin-top: -7px;margin-right:20px;" class="pull-left" width="50px" height="50px" src="{{ MEDIA_URL }}img/bucket.svg"></a>
                     {% block header %}{% endblock %}
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <br><br>
+        <div class="container">
             <div style="text-align: center;margin-top:0px;">
-                <div class="row-fluid">
+                <div class="row">
                     {% block content %}{% endblock %}
                 </div>
             </div>
         </div>
         <div class="container">
             <div style="margin-top:30px;">
-                <div class="row-fluid">
+                <div class="row">
                     <hr>
                     {% block footer %}{% endblock %}
                 </div>

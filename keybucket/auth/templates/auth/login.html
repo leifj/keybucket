@@ -1,22 +1,27 @@
-{% extends "base.html" %}
-{% block content %}
-    <h1>Please Login!</h1>
-    <p>Please select your <strong>Identity Provider</strong> from the following list:</p>
+{% extends "base-no-fluid.html" %}
+{% block header %}
+    <h1 class="text-logo pull-left" id="title" style="color:#666;text-align: left;"><span style="color:#333;">keybucket | </span>login</h1>
+{% endblock %}
 
-    <div class="span4">
-        <form action="{% url keybucket.auth.views.login %}" method="GET">
-            <select id="idp" name="idp">
-                {% for url, idp in available_idps %}
-                <option value="{{url}}">{{idp.0}}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Select"/>
-        </form>
-    </div>
-    <div class="span5" style="border-left: 1px solid silver;"></div>
-    <div class="span6">
+{% block content %}
+<div class="container" style="text-align: left;">
+<div class="row">
+        <div class="span5">
+            <p>Please select your <strong>Identity Provider</strong> from the following list:</p>
+            <form action="{% url keybucket.auth.views.login %}" method="GET">
+                <select id="idp" name="idp">
+                    {% for url, idp in available_idps %}
+                        <option value="{{url}}">{{idp.0}}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Select"/>
+            </form>
+        </div>
+    <div class="span1" style="border-left: 1px solid silver;"></div>
+    <div class="span6 well">
         {{ form }}
     </div>
-
+</div>
+</div>
 
 {% endblock %}

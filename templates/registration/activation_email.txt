@@ -1,0 +1,9 @@
+Hi,
+
+To complete the sign-up process, please follow this link:
+https://{{ site.domain }}{% url registration_activate activation_key %}
+
+The link will be valid for {{ expiration_days }} days.
+If you have not sign up for an account on {{ site.domain }} please disregard this email.
+
+Welcome to keybucket!

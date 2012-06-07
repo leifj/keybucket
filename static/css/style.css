@@ -33,7 +33,3 @@ textarea {
 .form-title {
     color:#333;
 }
-
-.progress .bar {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, red), color-stop(1, green));
-}

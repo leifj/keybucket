@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ssh/',include('keybucket.ssh.urls')),
     url(r'^saml2/sp/',include('djangosaml2.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^site-media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '%s/static' % settings.BASE_DIR, 'show_indexes': True}),
 )

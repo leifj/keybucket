@@ -4,7 +4,7 @@
     <p>Please select your <strong>Identity Provider</strong> from the following list:</p>
 
     <div class="span4">
-        <form action="{% url keybucket.views.login %}" method="GET">
+        <form action="{% url keybucket.auth.views.login %}" method="GET">
             <select id="idp" name="idp">
                 {% for url, idp in available_idps %}
                 <option value="{{url}}">{{idp.0}}</option>

@@ -37,7 +37,7 @@ DEFAULT_CONFIG_LOADER = get_custom_setting(
 
 @sensitive_post_parameters()
 @csrf_protect
-@never_cache()
+@never_cache
 def login(request,
           config_loader=DEFAULT_CONFIG_LOADER,
           redirect_field_name=REDIRECT_FIELD_NAME,

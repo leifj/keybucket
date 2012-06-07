@@ -87,7 +87,7 @@ def login(request,
     idp_set = conf.idps()
     last_selected_idp_name = last_selected_idp
     if last_selected_idp:
-        last_selected_idp_name = idp_set.get(last_selected_idp,last_selected_idp)
+        last_selected_idp_name = idp_set.get(last_selected_idp,None)
         print last_selected_idp_name
 
     if selected_idp:

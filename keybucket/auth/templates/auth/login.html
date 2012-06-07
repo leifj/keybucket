@@ -18,7 +18,7 @@
             <img src="{{ MEDIA_URL }}img/facebook.png">
             <img src="{{ MEDIA_URL }}img/google.png">
             {% if last_selected_idp %}
-            <a href="/auth/login?idp={{ last_selected_idp }}">{{ last_selected_idp_name }}</a>
+            <a class="button" href="/auth/login?idp={{ last_selected_idp }}">{{ last_selected_idp_name }}</a>
             {% endif %}
             <br><br>
             <p>Use this if you have an existing identity in a trusted identiy

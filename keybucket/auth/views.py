@@ -35,6 +35,8 @@ DEFAULT_CONFIG_LOADER = get_custom_setting(
     'djangosaml2.conf.config_settings_loader',
     )
 
+IDP_COOKIE="_djangosaml2_idp"
+
 @sensitive_post_parameters()
 @csrf_protect
 @never_cache
@@ -80,8 +82,13 @@ def login(request,
     selected_idp = request.GET.get('idp', None)
     conf = get_config_loader(config_loader, request)
     came_from = request.GET.get('next', settings.LOGIN_REDIRECT_URL)
+    last_selected_idp = request.COOKIES.get(IDP_COOKIE,None)
+
+    if last_selected_idp:
+        print print conf.metadata.entity[last_selected_idp]
 
     if selected_idp:
+        print conf.metadata.entity[selected_idp]
         # is a embedded wayf needed?
         client = Saml2Client(conf, logger=logger)
         try:
@@ -102,7 +109,9 @@ def login(request,
         oq_cache.set(session_id, came_from)
 
         logger.debug('Redirecting the user to the IdP')
-        return HttpResponseRedirect(location)
+        response = HttpResponseRedirect(location)
+        response.set_cookie(IDP_COOKIE,selected_idp)
+        return response
     else:
         form = authentication_form(request)
         idp_set = conf.idps()
@@ -112,6 +121,7 @@ def login(request,
         current_site = get_current_site(request)
         context = {
             'available_idps': idps,
+            'last_selected_idp': last_selected_idp,
             'came_from': came_from,
             'form': form,
             redirect_field_name: redirect_to,

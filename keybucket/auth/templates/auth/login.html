@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+
     <h1>Please Login!</h1>
     <p>Please select your <strong>Identity Provider</strong> from the following list:</p>
 
     <div class="span4">
+        <p>Use this if you have an existing identity in a trusted identiy
+        provider and want to publish <em>trusted keys</em>.</p>
         <form action="{% url keybucket.auth.views.login %}" method="GET">
             <select id="idp" name="idp">
                 {% for url, idp in available_idps %}
@@ -15,8 +18,13 @@
     </div>
     <div class="span5" style="border-left: 1px solid silver;"></div>
     <div class="span6">
+        <p>Use this if you have signed up for a <em>keybucket account</em> which
+        provides a quick and easy way to publish untrusted keys.</p>
         {{ form }}
+
+        <p><a href="{% url registration.views.register %}">sign up</a></p>
     </div>
+
 
 
 {% endblock %}

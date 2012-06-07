@@ -87,7 +87,9 @@ def login(request,
     idp_set = conf.idps()
     last_selected_idp_name = last_selected_idp
     if last_selected_idp:
-        last_selected_idp_name = idp_set.get(last_selected_idp,None)
+        idp = idp_set.get(last_selected_idp,None)
+        if idp:
+            last_selected_idp_name = idp[0]
         print last_selected_idp_name
 
     if selected_idp:
@@ -124,7 +126,7 @@ def login(request,
         context = {
             'available_idps': idps,
             'last_selected_idp': last_selected_idp,
-            'last_selected_idp_name': last_selected_idp_name[0],
+            'last_selected_idp_name': last_selected_idp_name,
             'came_from': came_from,
             'form': form,
             redirect_field_name: redirect_to,

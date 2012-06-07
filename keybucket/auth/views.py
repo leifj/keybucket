@@ -108,7 +108,7 @@ def login(request,
         idp_set = conf.idps()
         idps = []
         if idp_set:
-            idps.extend(idps.items())
+            idps.extend(idp_set.items())
         current_site = get_current_site(request)
         context = {
             'available_idps': idps,

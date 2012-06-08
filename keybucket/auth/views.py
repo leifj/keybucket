@@ -125,14 +125,15 @@ def login(request,
         current_site = get_current_site(request)
         context = {
             'available_idps': idps,
-            'last_selected_idp': last_selected_idp,
-            'last_selected_idp_name': last_selected_idp_name,
             'came_from': came_from,
             'form': form,
             redirect_field_name: redirect_to,
             'site': current_site,
             'site_name': current_site.name,
         }
+        if last_selected_idp and last_selected_idp_name:
+            context.update({'last_selected_idp': last_selected_idp,
+                            'last_selected_idp_name': last_selected_idp_name})
         if extra_context is not None:
             context.update(extra_context)
         response = TemplateResponse(request, template_name, context, current_app=current_app)

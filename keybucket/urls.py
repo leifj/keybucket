@@ -21,5 +21,6 @@ urlpatterns = patterns('',
     url(r'^saml2/sp/',include('djangosaml2.urls')),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^auth/',include('keybucket.auth.urls')),
+    url(r'^about/(?P<id>.+)/?$',"keybucket.profile.views.about"),
     url(r'^site-media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '%s/static' % settings.BASE_DIR, 'show_indexes': True}),
 )

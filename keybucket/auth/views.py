@@ -137,7 +137,7 @@ def login(request,
             idps.extend(idp_set.items())
         current_site = get_current_site(request)
         context = {
-            'available_idps': idps,
+            'available_idps': idps.sort(),
             'came_from': came_from,
             'form': form,
             redirect_field_name: redirect_to,

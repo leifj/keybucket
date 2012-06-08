@@ -135,9 +135,10 @@ def login(request,
         idps = []
         if idp_set:
             idps.extend(idp_set.items())
+        idps.sort()
         current_site = get_current_site(request)
         context = {
-            'available_idps': idps.sort(),
+            'available_idps': idps,
             'came_from': came_from,
             'form': form,
             redirect_field_name: redirect_to,

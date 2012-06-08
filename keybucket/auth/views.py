@@ -131,7 +131,7 @@ def login(request,
             'site': current_site,
             'site_name': current_site.name,
         }
-        if last_selected_idp and last_selected_idp_name:
+        if last_selected_idp is not None and last_selected_idp_name is not None:
             context.update({'last_selected_idp': last_selected_idp,
                             'last_selected_idp_name': last_selected_idp_name})
         if extra_context is not None:

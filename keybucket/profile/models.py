@@ -19,7 +19,7 @@ def populate_profile(sender, user, request, **kwargs):
     Also populates idp from the request.
     """
     modified = False
-    profile = UserProfile.objects.get_or_create(user=user)
+    profile,created = UserProfile.objects.get_or_create(user=user)
     if not profile.uhash:
         profile.uhash = hashlib.sha1(user.username).hexdigest()
         modified = True

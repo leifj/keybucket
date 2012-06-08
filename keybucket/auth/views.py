@@ -55,6 +55,13 @@ def login(request,
     """
 
     logger.debug('Login process started')
+
+    request.session.set_test_cookie()
+    selected_idp = request.GET.get('idp', None)
+    conf = get_config_loader(config_loader, request)
+    came_from = request.GET.get('next', settings.LOGIN_REDIRECT_URL)
+    last_selected_idp = request.COOKIES.get(IDP_COOKIE,None)
+
     redirect_to = request.REQUEST.get(redirect_field_name, '')
     if request.method == 'POST':
         form = authentication_form(data=request.POST)
@@ -76,7 +83,10 @@ def login(request,
             if request.session.test_cookie_worked():
                 request.session.delete_test_cookie()
 
-            return HttpResponseRedirect(redirect_to)
+            response = HttpResponseRedirect(redirect_to)
+            if last_selected_idp is not None:
+                response.set_cookie(IDP_COOKIE,"%s" % last_selected_idp,max_age=3600000)
+            return response
 
     request.session.set_test_cookie()
     selected_idp = request.GET.get('idp', None)
@@ -86,7 +96,7 @@ def login(request,
 
     idp_set = conf.idps()
     last_selected_idp_name = last_selected_idp
-    if last_selected_idp:
+    if last_selected_idp is not None:
         idp = idp_set.get(last_selected_idp,None)
         if idp:
             last_selected_idp_name = idp[0]
@@ -115,7 +125,7 @@ def login(request,
 
         logger.debug('Redirecting the user to the IdP')
         response = HttpResponseRedirect(location)
-        response.set_cookie(IDP_COOKIE,selected_idp,max_age=3600000)
+        response.set_cookie(IDP_COOKIE,"%s" % selected_idp,max_age=3600000)
         return response
     else:
         form = authentication_form(request)
@@ -138,7 +148,7 @@ def login(request,
             context.update(extra_context)
         response = TemplateResponse(request, template_name, context, current_app=current_app)
         if last_selected_idp is not None:
-            response.set_cookie(IDP_COOKIE,last_selected_idp,max_age=3600000)
+            response.set_cookie(IDP_COOKIE,"%s" % last_selected_idp,max_age=3600000)
         else:
             response.delete_cookie(IDP_COOKIE)
         return response

@@ -11,7 +11,12 @@ MANAGERS = ADMINS
 
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.abspath(os.path.join(SRC_DIR, '..'))
+
+SSL_KEY_DIR = "/etc/ssl/private"
+SSL_CRT_DIR = "/etc/ssl/cert"
+SAML_METADATA_FILE = "/var/run/swamid-idp-transitive.xml"
 
 DATABASES = {
     'default': {
@@ -113,7 +118,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    BASE_DIR + '/../templates',
+    "%s/templates" % BASE_DIR 
 )
 
 INSTALLED_APPS = (
@@ -125,6 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'django_extensions',
     'djangosaml2',
     'taggit',
     'actstream',
@@ -133,6 +139,7 @@ INSTALLED_APPS = (
     'keybucket.ssh',
     'keybucket.assurance',
     'keybucket.profile',
+    'keybucket.auth',
     'registration',
     'south',
 )
@@ -168,3 +175,20 @@ LOGGING = {
 
 AUTH_PROFILE_MODELS = "profile.UserProfile"
 ACTSTREAM_ACTION_MODELS = ['ssh.SSHKey', 'auth.User']
+
+from django.conf import settings
+from saml2 import BINDING_HTTP_POST, BINDING_HTTP_REDIRECT
+
+AUTH_PROFILE_MODULE = 'profile.UserProfile'
+
+SAML_ATTRIBUTE_MAPPING = {
+    'eduPersonPrincipalName': 'username',
+    'mail': 'email',
+    'givenName': 'first_name',
+    'sn': 'last_name',
+}
+
+LOGIN_URL = '/auth/login/'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+         
+SAML_CONFIG_LOADER = "keybucket.auth.asgard_sp_config"

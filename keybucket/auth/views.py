@@ -18,7 +18,7 @@ from djangosaml2.conf import get_config_loader
 from django.conf import settings
 
 from django.http import HttpResponse, HttpResponseRedirect
-from urlparse import urlparse
+import urlparse
 
 import logging
 logger = logging.getLogger('djangosaml2')

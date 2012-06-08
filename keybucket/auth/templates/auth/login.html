@@ -37,11 +37,13 @@
     <div class="span6 well" style="min-height:200px;">
         <p>Use this if you have signed up for a <em>keybucket account</em> which
         provides a quick and easy way to publish untrusted keys.</p>
-        <form class="form-inline" action="{% url keybucket.auth.views.login %}" method="GET">
+        <form class="form-inline" action="{% url keybucket.auth.views.login %}" method="POST">
+            {% csrf_token %}
             {{ form.as_p }}
+            <input class="btn btn-success" type="submit" value="Login"/>
         </form>
-        <input class="btn btn-success" type="submit" value="Select"/>
-        <p><a href="{% url registration.views.register %}">sign up</a></p>
+
+        <p class="pull-right"><a href="{% url registration.views.register %}">Sign up</a></p>
     </div>
 </div>
 </div>

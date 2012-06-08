@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from profile.views import welcome
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -13,6 +15,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+    url(r'^/?$','keybucket.profile.views.welcome'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ssh/',include('keybucket.ssh.urls')),
     url(r'^saml2/sp/',include('djangosaml2.urls')),

@@ -137,8 +137,10 @@ def login(request,
         if extra_context is not None:
             context.update(extra_context)
         response = TemplateResponse(request, template_name, context, current_app=current_app)
-        if last_selected_idp:
+        if last_selected_idp is not None:
             response.set_cookie(IDP_COOKIE,last_selected_idp,max_age=3600000)
+        else:
+            response.delete_cookie(IDP_COOKIE)
         return response
 
 

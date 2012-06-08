@@ -127,7 +127,9 @@ def login(request,
 
         logger.debug('Redirecting the user to the IdP')
         response = HttpResponseRedirect(location)
+        print "to cookie: %s" % selected_idp
         response.set_cookie(IDP_COOKIE,"%s" % selected_idp,max_age=3600000)
+        print response
         return response
     else:
         form = authentication_form(request)
@@ -150,9 +152,11 @@ def login(request,
             context.update(extra_context)
         response = TemplateResponse(request, template_name, context, current_app=current_app)
         if last_selected_idp is not None:
+            print "to cookie: %s" % last_selected_idp
             response.set_cookie(IDP_COOKIE,"%s" % last_selected_idp,max_age=3600000)
         else:
             response.delete_cookie(IDP_COOKIE)
+        print response
         return response
 
 

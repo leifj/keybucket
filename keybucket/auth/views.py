@@ -94,6 +94,8 @@ def login(request,
     came_from = request.GET.get('next', settings.LOGIN_REDIRECT_URL)
     last_selected_idp = request.COOKIES.get(IDP_COOKIE,None)
 
+    print "from cookie: %s" % last_selected_idp
+
     idp_set = conf.idps()
     last_selected_idp_name = last_selected_idp
     if last_selected_idp is not None:

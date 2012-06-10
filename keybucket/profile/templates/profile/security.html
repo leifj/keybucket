@@ -3,7 +3,13 @@
 <div class="span8">
     <div class="page-header"><h1>Security Information</h1></div>
     <p>
-        The security of the system is ...
+        The security of keybucket depends on the security of the binding between user identities and SSH public
+        keys. We recommend site-owners to only depend on keys with a quality-marker. This actually excludes
+        <em>internal</em> keybucket accounts and forces users to use an external identity provider.</p>
+    <p>The quality of the SSH public key is tied to the
+        security of the external identity providers. Keybucket never stores any passwords or credentials associated
+        with external identity providers so barring a problem with keybucket itself there is no way to forge an
+        SSH key tied to such an identity.
     </p>
 </div>
 {% endblock %}

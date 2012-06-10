@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
+{% block extrahead %}
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.githubRepoWidget.min.js"></script>
+{% endblock %}
 {% block content %}
 <div class="span8">
     <div class="page-header"><h1>OpenSource</h1></div>
     <p>
-        <a href="http://github.com/leifj/keybucket">Follow us on github!</a>
+        Keybucket is an OpenSource project available under a 2-clause BSD license. If you don't trust our instance
+        of keybucket, running your
+        own is very easy. Keybucket is written in <a href="http://djangoproject.com">Django</a>. There are
+        no secret parts - everything is on github and is free for you to use at will.
     </p>
+    <div class="github-widget" data-repo="leifj/keybucket"></div>
 </div>
 {% endblock %}

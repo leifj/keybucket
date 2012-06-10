@@ -2,8 +2,27 @@
 {% block content %}
 <div class="span8">
     <div class="page-header"><h1>Site Owners</h1></div>
-    <p>
-        How to use keybucket...
-    </p>
+    <p>Using keybucket it is very easy to provision users on your system. Simply run a script from cron for each
+    user that downloads each users keys from keybucket. No need to provision passwords for any of your users!</p>
+    <p>Here is a simple snippet of shell-script that downloads SSH keys for all users listed in a file.</p>
+
+    <pre class="prettyprint linenums">
+#!/bin/sh
+
+FILE=$1
+
+grep -v -e '^#' $FILE | (while read userid; do
+   keybucketid=`echo $userid | sha1sum | awk '{print $1}'`
+   wget -qO- http://keybucket.app.nordu.net/ssh/$keybucketid
+done)
+    </pre>
+
+    <p>Use this code thus: <code>keybucket.sh users.lst</code> where <code>users.lst</code> is a simple list of one-user-per-line:</p>
+<pre>
+example123
+# a comment
+leifj@nordu.net
+</pre>
+<p>Running such a command from cron provides an easy way to keep a list of allowed users up-to-date on your system.</p>
 </div>
 {% endblock %}

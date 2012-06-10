@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="span8">
+    <div class="page-header"><h1>About</h1></div>
+    <p>
+        Keybucket is a secure repository for your SSH public keys. Each key is given a stable URI reference
+        based on your identity. For instance, if you use your twitter id <code>example123</code> to login to
+        keybucket all keys you upload will be found at the following URI:
+    </p>
+    <pre>http://keybucket/ssh/771a1c7dd6349c17e0e0c75c1a86fed6c084567f</pre>
+    <p>The last part of the URI is formed by computing a SHA1 hash of the string example123:</p>
+    <pre>http://keybucket/ssh/{sha1("example123")}</pre>
+
+    <p>Depending on which type of identity you have chosen your keys will be annotated with quality-markers so
+        that <a href="/about/siteowners">site owners</a> can choose which level of protection is needed for
+        their services.
+    </p>
+</div>
+{% endblock %}

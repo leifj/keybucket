@@ -192,3 +192,8 @@ LOGIN_URL = '/auth/login/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
          
 SAML_CONFIG_LOADER = "keybucket.auth.asgard_sp_config"
+AUTHENTICATION_BACKENDS = [
+	'django.contrib.auth.backends.RemoteUserBackend',
+        'django.contrib.auth.backends.ModelBackend'
+        'djangosaml2.backends.Saml2Backend'
+]

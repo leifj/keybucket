@@ -17,8 +17,25 @@
                     <div class="row">
                         <div class="span12">
                             <a href="/ssh"><img style="margin-top: -7px;margin-right:20px;" class="pull-left" width="50px" height="50px" src="{{ MEDIA_URL }}img/bucket.svg"></a>
-                            {% block header %}<h1 class="text-logo pull-left" id="title" style="color:#666;text-align: left;"><span style="color:#333;">Your keys:</span>published</h1>{% endblock %}
+                            {% block header %}
+                                <h1 class="text-logo pull-left" id="title" style="color:#666;text-align: left;"><span style="color:#333;">Your keys:</span>published</h1>
+                            {% endblock %}
                             {% block extraheader %}{% endblock %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span10">&nbsp;</div>
+                        <div class="span2">
+                            <div class="addthis_toolbox addthis_default_style ">
+                                <a class="addthis_button_preferred_1"></a>
+                                <a class="addthis_button_preferred_2"></a>
+                                <a class="addthis_button_preferred_3"></a>
+                                <a class="addthis_button_preferred_4"></a>
+                                <a class="addthis_button_compact"></a>
+                                <a class="addthis_counter addthis_bubble_style"></a>
+                            </div>
+                            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fd278ef059cc5e2"></script>
                         </div>
                     </div>
             </div>
@@ -64,20 +81,6 @@
                                 {% else %}
                                 <li><a class="btn btn-success btn-mini" href="/ssh">Login</a></li>
                                 {% endif %}
-                                <li style="padding-top:5px;">
-                                    <!-- AddThis Button BEGIN -->
-                                    <div class="addthis_toolbox addthis_default_style ">
-                                        <a class="addthis_button_preferred_1"></a>
-                                        <a class="addthis_button_preferred_2"></a>
-                                        <a class="addthis_button_preferred_3"></a>
-                                        <a class="addthis_button_preferred_4"></a>
-                                        <a class="addthis_button_compact"></a>
-                                        <a class="addthis_counter addthis_bubble_style"></a>
-                                    </div>
-                                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-                                    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fd278ef059cc5e2"></script>
-                                    <!-- AddThis Button END -->
-                                </li>
                             </ul>
                         </div>
                     {% endblock %}

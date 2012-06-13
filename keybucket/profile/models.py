@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from keybucket.assurance.models import Assurance, IdentityProvider
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
+from django.db.models.signals import post_save
 
 def get_custom_setting(name, default=None):
     if hasattr(settings, name):
@@ -23,7 +24,6 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return "Profile for %s" % self.user
-
 
 def get_or_create_profile(user):
     """
@@ -91,7 +91,11 @@ def populate_profile(sender, user, request, **kwargs):
     request.session['assurance_levels'] = levels
     return
 
+def create_profile(sender,instance,created):
+    get_or_create_profile(instance)
+
 user_logged_in.connect(populate_profile)
+post_save.connect(create_profile)
 
 def assurance_levels(request):
     try:

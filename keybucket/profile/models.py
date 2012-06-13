@@ -6,12 +6,24 @@ from keybucket.assurance.models import Assurance, IdentityProvider
 from django.core.exceptions import ObjectDoesNotExist
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User,related_name="profile")
+    user = models.ForeignKey(User)
     display_name = models.CharField(max_length=256)
     idp = models.CharField(max_length=256)
     uhash = models.CharField(max_length=256,unique=True) # sha1 of user.username
     timecreated = models.DateTimeField(auto_now_add=True)
     lastupdated = models.DateTimeField(auto_now=True)
+
+
+def get_or_create_profile(user):
+    """
+    Return the UserProfile for the given user, creating one if it does not exist.
+
+    This will also set user.profile to cache the result.
+    """
+    user.profile, c = UserProfile.objects.get_or_create(user=user)
+    return user.profile
+
+User.profile = property(get_or_create_profile)
 
 def populate_profile(sender, user, request, **kwargs):
     """

@@ -134,8 +134,7 @@ INSTALLED_APPS = (
     'djangosaml2',
     'taggit',
     'actstream',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'keybucket.utils',
     'keybucket.ssh',
     'keybucket.assurance',
     'keybucket.profile',

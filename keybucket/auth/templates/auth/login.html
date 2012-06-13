@@ -1,4 +1,5 @@
 {% extends "base-no-fluid.html" %}
+{% load truncate_filters %}
 {% block extrahead %}
     <style>
         input, select {
@@ -18,7 +19,7 @@
             <img src="{{ MEDIA_URL }}img/facebook.png">
             <img src="{{ MEDIA_URL }}img/google.png">
             {% if last_selected_idp and last_selected_idp_name %}
-            <a class="btn btn-success" href="/auth/login?idp={{ last_selected_idp }}">{{ last_selected_idp_name }}</a>
+            <a class="btn btn-success" href="/auth/login?idp={{ last_selected_idp }}">{{ last_selected_idp_name|truncatechars:30 }}</a>
             {% endif %}
             <br><br>
             <p>Use this if you have an existing identity in a trusted identiy

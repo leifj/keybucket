@@ -81,6 +81,9 @@
                                 {% else %}
                                 <li><a class="btn btn-success btn-mini" href="/ssh">Login</a></li>
                                 {% endif %}
+                                {% if user.is_superuser and user.is_staff %}
+                                <li><a href="/admin">Administration</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     {% endblock %}

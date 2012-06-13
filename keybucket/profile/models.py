@@ -13,6 +13,9 @@ class UserProfile(models.Model):
     timecreated = models.DateTimeField(auto_now_add=True)
     lastupdated = models.DateTimeField(auto_now=True)
 
+    def __unicode__(self):
+        return "Profile for %s" % self.user
+
 
 def get_or_create_profile(user):
     """

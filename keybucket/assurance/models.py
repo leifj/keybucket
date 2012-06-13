@@ -19,5 +19,8 @@ class IdentityProvider(models.Model):
     timecreated = models.DateTimeField(auto_now_add=True)
     lastupdated = models.DateTimeField(auto_now=True)
 
+    def __unicode__(self):
+        return self.uri
+
 def assurance_by_name(n):
     return Assurance.objects.get(name=n)

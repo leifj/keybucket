@@ -52,6 +52,10 @@ def populate_profile(sender, user, request, **kwargs):
     if idp is not None:
         profile.idp = idp
         modified = True
+
+        #auto-populate idp table
+        idp_object,created = IdentityProvider.objects.get_or_create(uri=idp)
+
         
     if modified:
         profile.save()

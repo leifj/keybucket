@@ -1,4 +1,5 @@
 import hashlib
+from django.dispatch.dispatcher import receiver
 import os
 from django.contrib.auth.signals import user_logged_in
 from django.db import models
@@ -70,7 +71,7 @@ def populate_profile(sender, user, request, **kwargs):
             except ObjectDoesNotExist:
                 pass
     
-    if levels is None and idp != None:
+    if levels is None and idp is not None:
         # fall back to default for the IdP if exists
         try:
             identity_provider = IdentityProvider.objects.get_or_create(uri=idp)
@@ -91,11 +92,11 @@ def populate_profile(sender, user, request, **kwargs):
     request.session['assurance_levels'] = levels
     return
 
+@receiver(post_save,sender=User)
 def create_profile(sender,instance,created,**kwargs):
     get_or_create_profile(instance)
 
 user_logged_in.connect(populate_profile)
-post_save.connect(create_profile)
 
 def assurance_levels(request):
     try:

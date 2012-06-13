@@ -1,0 +1,1 @@
+*/5 * * * * root wget -qO- 'http://md.swamid.se/md/swamid-idp-transitive.xml' > /var/run/swamid-idp-transitive.xml

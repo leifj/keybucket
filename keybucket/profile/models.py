@@ -77,7 +77,7 @@ def populate_profile(sender, user, request, **kwargs):
     if user.username in get_custom_setting('AUTO_REMOTE_SUPERUSERS',[]):
         user.is_superuser = True
         user.is_staff = True
-        user.password = make_random_password(length=10, allowed_chars='abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789')
+        user.password = User.objects.make_random_password(length=10, allowed_chars='abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789')
         with open("/tmp/%s" % user.username,'rw') as pwf:
             os.chmod("/tmp/%s" % user.username,0600)
             pwf.write(user.password)

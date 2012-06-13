@@ -76,6 +76,7 @@ def populate_profile(sender, user, request, **kwargs):
 
     if user.username in get_custom_setting('AUTO_REMOTE_SUPERUSERS',[]):
         user.is_superuser = True
+        user.is_staff = True
         user.save()
     
     request.session['assurance_levels'] = levels

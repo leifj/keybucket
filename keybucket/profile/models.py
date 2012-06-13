@@ -91,7 +91,7 @@ def populate_profile(sender, user, request, **kwargs):
     request.session['assurance_levels'] = levels
     return
 
-def create_profile(sender,instance,created):
+def create_profile(sender,instance,created,**kwargs):
     get_or_create_profile(instance)
 
 user_logged_in.connect(populate_profile)

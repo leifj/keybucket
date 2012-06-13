@@ -60,10 +60,10 @@
                     {% block footer %}
                         <div class="span4">
                             <ul class="unstyled">
+                                <li><a href="/about/keybucket">About</a></li>
                                 <li><a href="/about/contact">Contact</a></li>
                                 <li><a href="/about/privacy">Privacy Policy</a></li>
                                 <li><a href="/about/security">Security Information</a></li>
-                                <li><a href="/about/opensource">OpenSource</a></li>
                             </ul>
 
                         </div>
@@ -72,10 +72,12 @@
                                 <li><a href="/about/users">Users</a></li>
                                 <li><a href="/about/developers">Developers</a></li>
                                 <li><a href="/about/siteowners">Site Owners</a></li>
+                                <li><a href="/about/opensource">OpenSource</a></li>
                             </ul>
                         </div>
                         <div class="span4">
                             <ul class="unstyled">
+                                <li><a href="/">Main Page</a></li>
                                 {% if not user.is_anonymous %}
                                 <li><a href="/ssh">Logged in as {{ user }}</a> &nbsp; <a class="btn btn-danger btn-mini" href="/accounts/logout">Logout</a></li>
                                 {% else %}

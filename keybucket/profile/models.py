@@ -16,7 +16,7 @@ def get_custom_setting(name, default=None):
         return default
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,related_name="profile")
     display_name = models.CharField(max_length=256)
     idp = models.CharField(max_length=256)
     uhash = models.CharField(max_length=256,unique=True) # sha1 of user.username
@@ -25,17 +25,6 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return "Profile for %s" % self.user
-
-def get_or_create_profile(user):
-    """
-    Return the UserProfile for the given user, creating one if it does not exist.
-
-    This will also set user.profile to cache the result.
-    """
-    user.profile, c = UserProfile.objects.get_or_create(user=user)
-    return user.profile
-
-User.profile = property(get_or_create_profile)
 
 def populate_profile(sender, user, request, **kwargs):
     """
@@ -57,7 +46,6 @@ def populate_profile(sender, user, request, **kwargs):
         #auto-populate idp table
         idp_object,created = IdentityProvider.objects.get_or_create(uri=idp)
 
-        
     if modified:
         profile.save()
     
@@ -94,7 +82,7 @@ def populate_profile(sender, user, request, **kwargs):
 
 @receiver(post_save,sender=User)
 def create_profile(sender,instance,created,**kwargs):
-    get_or_create_profile(instance)
+    profile,created = UserProfile.objects.get_or_create(user=instance)
 
 user_logged_in.connect(populate_profile)
 

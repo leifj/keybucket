@@ -4,6 +4,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from keybucket.assurance.models import Assurance, IdentityProvider
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
+
+def get_custom_setting(name, default=None):
+    if hasattr(settings, name):
+        return getattr(settings, name)
+    else:
+        return default
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
@@ -41,7 +48,7 @@ def populate_profile(sender, user, request, **kwargs):
     
     #ToDo get idp from request and set
     idp = request.META.get('Shib_Identity_Provider',None)
-    if idp != None:
+    if idp is not None:
         profile.idp = idp
         modified = True
         
@@ -50,7 +57,7 @@ def populate_profile(sender, user, request, **kwargs):
     
     levels = []
     authn_context_class = request.META.get('Shib_AuthnContext_Class',None)
-    if authn_context_class != None:
+    if authn_context_class is not None:
         for uri in authn_context_class.split():
             try:
                 level = Assurance.objects.get(uri=uri,assignable=False) #only look for "real" LoAs
@@ -66,6 +73,10 @@ def populate_profile(sender, user, request, **kwargs):
                 levels.append(identity_provider.default_assurance)
         except ObjectDoesNotExist:
             pass
+
+    if user.username in get_custom_setting('AUTO_REMOTE_SUPERUSERS',[]):
+        user.is_superuser = True
+        user.save()
     
     request.session['assurance_levels'] = levels
     return

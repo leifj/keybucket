@@ -1,71 +1,71 @@
 {% extends 'base.html' %}
-{% block headline %}
-    <div class="span12" style="padding-top: 20px;">&nbsp;</div>
-{% endblock %}
+
 {% block content %}
-<div class="row">
-    <div class="span12">
-        <h1 class="text-logo pull-left" id="title" style="color:#666;text-align: left;"><span style="color:#333;">Keybucket </span>your keys:published</h1>
-    </div>
-    </div>
-    <br>
     <div class="row">
-    <div class="span6">
-        <!-- <h1>Keybucket</h1> -->
-        <!-- <hr/> -->
-        <!--
-        <iframe src="http://player.vimeo.com/video/38634031"
-                width="400px"
-                height="300px;"
-                frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
-        </iframe>
-        -->
+    <div class="span5">
         <iframe width="400" height="300" src="http://www.youtube.com/embed/gMICxIxUHgs" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="span6">
         <div class="hero-unit" style="padding: 40px;padding-top:0px;background: #fff;">
+            <h2>Your keys:published</h2>
+            <br>
             <p>
                 <strong>Keybucket</strong> connects your SSH public key to your online identity. SSH helps site
-                administrators keep their hosts secure. <strong>Keybucket</strong> is an online trust anchor and
+                administrators keep their hosts secure.
+                <br><br>
+                <strong>Keybucket</strong> is an online trust anchor and
                 management tool for SSH public keys.
             </p>
-            <a class="btn btn-primary btn-large" href="/ssh/add">
+            <br><br>
+            <a class="btn btn-success btn-large" href="/ssh/add">
               Publish your SSH pubkey right now!
             </a>
           </p>
         </div>
     </div>
 </div>
-    <hr/>
+
+<hr>
+
 <div class="row">
     <div class="span4">
-            <h1>Site administrators</h1>
+        <h2>Site owners</h2>
+        <br>
+        <blockquote>
             <p>
-               <strong>Keybucket</strong> provides stable references for all your users SSH keys.
+                <strong>Keybucket</strong> provides stable references for all your users SSH keys.
                 Keybucket works with both popular social login aswell as high assurance identity services.
                 As a site administrator you can easily control which <strong>level of protection</strong>
-                your site needs.
+                your site needs. <a href="/about/siteowners"><br>Learn more »</a>
+                <br><br>
             </p>
-            <a class="btn btn-info btn-small" href="/about/siteowners">Learn more »</a>
-     </div>
+        </blockquote>
+    </div>
+
     <div class="span4">
-        <h1>Users</h1>
+        <h2>Users</h2>
+        <br>
+        <blockquote>
         <p>
             <strong>Keybucket</strong> is a stable place to publish your SSH pubkey(s). If you are using SSH
             to access lots of machines or if you often setup new machines then keybucket is for you. Use keybucket
-            to automate your SSH pubkey management and say goodbye to manual key copy-paste!
+            to automate your SSH pubkey management and say goodbye to manual key copy-paste! <a href="/about/users">Learn more »</a>
         </p>
-        <a class="btn btn-info btn-small" href="/about/users">Learn more »</a>
+        </blockquote>
 
     </div>
     <div class="span4">
-        <h1>Developers</h1>
+        <h2>Developers</h2>
+        <br>
+        <blockquote>
         <p>
             Working with <strong>Keybucket</strong> is easy: we provide simple RESTful APIs and accessing
-            a key in SSH authorized keys format can be as easy as a 1-line shell-script.
+            a key in SSH authorized keys format can be as easy as a 1-line shell-script. <a href="/about/developers">Learn more »</a>
+            <br>
         </p>
         <br><br><br>
-        <a class="btn btn-info btn-small" href="/about/developers">Learn more »</a>
+        </blockquote>
+
     </div>
 </div>
 {%  endblock %}

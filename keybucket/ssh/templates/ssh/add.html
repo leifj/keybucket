@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
-{% block header %}
-<h1 style="text-align: left;" class="text-logo" id="title" style="color:#333;">Add key</h1>
-{% endblock %}
 
 {% block content %}
-    <div id="key-container" class="shadow" style="text-align: left">
+    <div class="span8">
+        <h1>Add key</h1>
+        <hr>
         <form class="form" action="/ssh/add" method="post">  {% csrf_token %}
             <h6 class="form-title">Paste your key</h6>
             {{ form.key }}
@@ -19,6 +18,6 @@
             <input type="submit" class="btn btn-large btn-success" value="Save key"/>
             <input type="reset" class="btn btn-large btn-important" value="Clear form"/>
         </form>
-    </div>
     <br><br>
+    </div>
 {% endblock %}

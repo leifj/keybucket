@@ -1,18 +1,15 @@
 {% extends 'base.html' %}
-{% block extraheader %}
-    <a href="/ssh/add" class="btn btn-large btn-success pull-right">Add key</a>
-{% endblock %}
 
 {% block content %}
+    <!-- <a href="/ssh/add" class="btn btn-large btn-success pull-right">Add key</a> -->
     {% if keys %}
-    <div id="key-container" class="shadow">
         {% for key in keys %}
         <div class="accordion" id="accordion2">
             <div class="accordion-group">
                 <div class="accordion-heading">
                     <span class="label label-info pull-left" style="margin-top:10px;margin-right:10px;">SSH</span>
                     <a style="text-align: left;text-decoration: none;color:#111;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#accordion-{{ key.id }}">
-                        <i class="icon-chevron-down pull-right"></i> <p style="font-size: 1.1em;">{{ key.name }}</p>
+                        <i class="icon-chevron-right pull-right"></i> <p style="font-size: 1.1em;">{{ key.name }}</p>
                     </a>
                 </div>
                 <div id="accordion-{{ key.id }}" class="accordion-body collapse">
@@ -37,7 +34,6 @@
                             {%  endfor %}
                             </div>
                             {% endif %}
-
                         </div>
                     </div>
                 </div>
@@ -45,14 +41,11 @@
             </div>
         {% endfor %}
     </div>
+
     {% else %}
-        <div id="key-container" class="shadow">
             <div class="hero-unit">
                 <p>Welcome, please fill your bucket with some keys</p>
             </div>
-        </div>
     {% endif %}
-
-
-</div>
+    </div>
 {% endblock %}

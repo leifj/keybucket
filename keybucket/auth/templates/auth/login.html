@@ -1,25 +1,16 @@
-{% extends "base-no-fluid.html" %}
+{% extends "base.html" %}
 {% load truncate_filters %}
-{% block extrahead %}
-    <style>
-        input, select {
-            width:80%;
-        }
-    </style>
-{% endblock %}
-{% block header %}
-    <h1 class="text-logo pull-left" id="title" style="color:#666;text-align: left;"><span style="color:#333;">keybucket | </span>login</h1>
-{% endblock %}
 
 {% block content %}
-<div class="container" style="text-align: left;">
-<div class="row">
-        <div class="span5 well" style="min-height:200px;">
+    <h2>Log in and start sharing keys</h2>
+    <br>
+    <div class="row">
+        <div class="span5 well" style="min-height:250px;">
             <img src="{{ MEDIA_URL }}img/twitter.png">
             <img src="{{ MEDIA_URL }}img/facebook.png">
             <img src="{{ MEDIA_URL }}img/google.png">
             {% if last_selected_idp and last_selected_idp_name %}
-            <a class="btn btn-success" href="/auth/login?idp={{ last_selected_idp }}">{{ last_selected_idp_name|truncatechars:30 }}</a>
+                <a class="btn btn-success" href="/auth/login?idp={{ last_selected_idp }}">{{ last_selected_idp_name|truncatechars:30 }}</a>
             {% endif %}
             <br><br>
             <p>Use this if you have an existing identity in a trusted identiy
@@ -31,11 +22,14 @@
                         <option value="{{url}}">{{idp.0}}</option>
                     {% endfor %}
                 </select>
+                <br>
+            <br>
                 <input class="btn btn-success" type="submit" value="Select"/>
             </form>
         </div>
     <div class="span1" style="border-left: 1px solid silver;"></div>
-    <div class="span6 well" style="min-height:200px;">
+
+    <div class="span6 well" style="min-height:250px;">
         <p>Use this if you have signed up for a <em>keybucket account</em> which
         provides a quick and easy way to publish untrusted keys.</p>
         <form class="form-inline" action="{% url keybucket.auth.views.login %}" method="POST">
@@ -46,7 +40,6 @@
 
         <p class="pull-right"><a href="{% url registration.views.register %}">Sign up</a></p>
     </div>
-</div>
 </div>
 
 {% endblock %}

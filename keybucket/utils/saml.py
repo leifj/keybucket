@@ -45,7 +45,7 @@ class Saml2Backend(ModelBackend):
         if not attributes:
             logger.error('The attributes dictionary is empty')
 
-        saml_user = self.get_saml_user(attributes,attribute_mapping)
+        saml_user = self.get_saml_user(session_info,attributes,attribute_mapping)
 
         if saml_user is None:
             logger.error('Could not find saml_user value')

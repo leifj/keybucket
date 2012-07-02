@@ -40,3 +40,60 @@ class BaseConverter(object):
     convert = staticmethod(convert)
 
 id_encoder = BaseConverter("23456789abcdefghijkmnprstuvwABCDEFGHIJKMNOPRSTUVW")
+
+consonant = 'bdfghjklmnprstvz'
+vowel = 'aiou'
+MASK_FIRST4 = 0xF0000000
+MASK_FIRST2 = 0xC0000000
+
+def uint2quint(i):
+    """
+    convert an unsigned int to a proquint
+    """
+    q = ''
+
+    j = i & MASK_FIRST4
+    i <<= 4
+    j >>= 28
+    q += consonant[j]
+    j = i & MASK_FIRST2
+    i <<= 2
+    j >>= 30
+    q += vowel[j]
+    j = i & MASK_FIRST4
+    i <<= 4
+    j >>= 28
+    q += consonant[j]
+    j = i & MASK_FIRST2
+    i <<= 2
+    j >>= 30
+    q += vowel[j]
+    j = i & MASK_FIRST4
+    i <<= 4
+    j >>= 28
+    q += consonant[j]
+
+    q += '-'
+
+    j = i & MASK_FIRST4
+    i <<= 4
+    j >>= 28
+    q += consonant[j]
+    j = i & MASK_FIRST2
+    i <<= 2
+    j >>= 30
+    q += vowel[j]
+    j = i & MASK_FIRST4
+    i <<= 4
+    j >>= 28
+    q += consonant[j]
+    j = i & MASK_FIRST2
+    i <<= 2
+    j >>= 30
+    q += vowel[j]
+    j = i & MASK_FIRST4
+    i <<= 4
+    j >>= 28
+    q += consonant[j]
+
+    return q

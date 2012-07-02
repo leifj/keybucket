@@ -8,6 +8,8 @@ from keybucket.assurance.models import Assurance, IdentityProvider
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.db.models.signals import post_save
+from keybucket.utils import id_encoder
+import random
 
 def get_custom_setting(name, default=None):
     if hasattr(settings, name):
@@ -34,7 +36,8 @@ def populate_profile(sender, user, request, **kwargs):
     modified = False
     profile,created = UserProfile.objects.get_or_create(user=user)
     if not profile.uhash:
-        profile.uhash = hashlib.sha1(user.username).hexdigest()
+
+        profile.uhash = id_encoder.from_decimal(random.getrandbits(32)) #hashlib.sha1(user.username).hexdigest()
         modified = True
     
     #ToDo get idp from request and set

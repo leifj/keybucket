@@ -187,12 +187,19 @@ SAML_ATTRIBUTE_MAPPING = {
     'sn': 'last_name',
 }
 
+SAML_USER_ATTRIBUTE_MAPPING = {
+    'username': ('eduPersonPrincipalName','persistentID','mail'),
+    'first_name': 'givenName',
+    'last_name': 'sn',
+    'display_name': ('displayName','cn')
+}
+
 LOGIN_URL = '/auth/login/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
          
 SAML_CONFIG_LOADER = "keybucket.auth.asgard_sp_config"
 AUTHENTICATION_BACKENDS = [
 	'django.contrib.auth.backends.RemoteUserBackend',
-        'django.contrib.auth.backends.ModelBackend',
-        'djangosaml2.backends.Saml2Backend'
+    'django.contrib.auth.backends.ModelBackend',
+    'keybucket.utils.saml.TargetedUsernameSamlBackend'
 ]

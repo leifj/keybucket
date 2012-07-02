@@ -149,4 +149,5 @@ class TargetedUsernameSamlBackend(Saml2Backend):
         if username is None:
             return None
 
-        return "%s!%s!%s" % (session_info['issuer'],session_info.get('entity_id',""),username)
+        return username
+        #return "%s!%s!%s" % (session_info['issuer'],session_info.get('entity_id',""),username)

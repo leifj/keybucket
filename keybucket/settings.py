@@ -181,16 +181,9 @@ from saml2 import BINDING_HTTP_POST, BINDING_HTTP_REDIRECT
 AUTH_PROFILE_MODULE = 'profile.UserProfile'
 
 SAML_ATTRIBUTE_MAPPING = {
-    'eduPersonPrincipalName': 'username',
-    'mail': 'email',
-    'givenName': 'first_name',
-    'sn': 'last_name',
-}
-
-SAML_USER_ATTRIBUTE_MAPPING = {
-    'username': ('eduPersonPrincipalName','persistentID','mail'),
-    'first_name': 'givenName',
-    'last_name': 'sn',
+    'username': ('eduPersonPrincipalName','uid'),
+    'first_name': ('givenName'),
+    'last_name': ('sn'),
     'display_name': ('displayName','cn')
 }
 

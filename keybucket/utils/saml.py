@@ -137,9 +137,14 @@ class Saml2Backend(ModelBackend):
 class TargetedUsernameSamlBackend(Saml2Backend):
     def get_saml_user(self,session_info,attributes,attribute_mapping):
 
-        if attributes.has_key('eduPersonTargetedID'):
-            name_id_o = name_id_type__from_string(attributes['eduPersonTargetedID'])
-            return "%s!%s!%s" % (name_id_o.name_qualifier,name_id_o.sp_name_qualifier,name_id_o.text)
+        eptid = attributes.get('eduPersonTargetedID',None)
+        if eptid is not None:
+            try:
+                name_id_o = name_id_type__from_string(eptid)
+                return "%s!%s!%s" % (name_id_o.name_qualifier,name_id_o.sp_name_qualifier,name_id_o.text)
+            except Exception,ex:
+                logger.error(ex)
+                pass
 
         username = None
         for saml_attr, django_fields in attribute_mapping.items():

@@ -147,9 +147,10 @@ class TargetedUsernameSamlBackend(Saml2Backend):
                 pass
 
         username = None
-        for saml_attr, django_fields in attribute_mapping.items():
-            if 'username' in django_fields and saml_attr in attributes:
-                username = attributes[saml_attr][0]
+        if attribute_mapping.has_key('username'):
+            for saml_attr in attribute_mapping['username']:
+                if attributes.has_key(saml_attr):
+                    username = attributes[saml_attr][0]
 
         if username is None:
             return None
